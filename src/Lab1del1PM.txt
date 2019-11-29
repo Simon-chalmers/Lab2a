@@ -1,0 +1,46 @@
+
+
+== Uppgift d) ==
+
+- Använda JUnit för att skriva tester med 100% coverage för era bilklasser.
+
+Även JUnit har mycket information på nätet som ni kan leta upp. Tänk på att era
+tester inte behöver testa "allt"; det viktiga är att ni bekantar er med JUnit
+och förstår hur det fungerar.
+
+Därför behöver ni INTE skriva kodkontrakt för era metoder. Det räcker med att ni
+skriver testmetoder som testar metodernas funktionalitet med hjälp av
+assert/equals osv. Därefter testar ni så att alla JUnit-tester går igenom med
+"Run with coverage".
+
+== Uppgift e) ==
+
+Bilklassernas metoder har för närvarande inget sätt att kontrollera hur mycket
+farten kan öka eller sänkas. Skriv om metoder (och dokumentation) så att:
+
+
+- Anrop till gas() inte kan resultera i att farten sänks, och
+
+- Anrop till break() inte kan resultera i att farten höjs.
+
+
+== Extra uppgifter för mer utmaning ==
+
+- Lägg till ytterligare bilar till er arvs-hierarki.
+- Lägg till en enkel command line controller genom vilken ni kan skapa bilar;
+  gasa och bromsa bilar; avgöra var bilarna befinner sig; etc.
+
+== Krav för godkänt på redovisning ==
+Alla gruppmedlemmar skall ha skrivit på koden och känna till hela arbetet individuellt
+Alla uppgifter ska vara lösta vid redovisningen.
+Lösningen skall gå att kompilera och köra!
+
+
+== Labbkriterier ==
+- Det är absolut förbjudet att dela, kopiera eller använda kod från varandra på
+något sätt. Det är däremot accepterat att diskutera uppgifter och lösningar sinsemellan.
+
+- För att få godkänt på labben gör ni muntliga redovisningar. Gruppen gör detta
+samtidigt: alla gruppmedlemmar kommer ställas frågor var och en för sig. För att
+gruppen ska bli godkänd ska alla gruppmedlemmar kunna svara på frågor.
+Så se till att ni hänger med i laborationen; fråga om hjälp ifall ni fastnar.
