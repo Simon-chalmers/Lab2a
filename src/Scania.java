@@ -50,7 +50,7 @@ public class Scania extends AbstractVehicle {
 
     @Override
     double speedFactor() {
-        return (enginePower * 0.01)/(weight/1000d);
+        return (enginePower * 0.01);
     }
 
     /**

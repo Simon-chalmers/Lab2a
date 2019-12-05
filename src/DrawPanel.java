@@ -1,15 +1,50 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
+
+/*
+S-Single Responsibility Principle
+
+    Loadable - Only focus to add and remove items from list.
+
+O-Open Closed Principle
+
+    AbstractVehicle - Can extend and add methods for specific subclasses.
+
+L-Liskovs Substitutions Principle
+
+    Volvo240/Saab95 and Scania can do just as much as AbstractVehicle
+
+I-Interface Segregation Principle
+
+    ILoadable and IMovable does different things.
+    So we can use ILoadable in Garage and not IMovable because
+    garage should not move.
+
+D-Dependancy Inversion Principle
+
+    We use as wide variable as possible to store objects.
+    ex, List<AbstractVehicle> instead of ArrayList<Volvo250>
+    and return AbstractVehicle.
+
+
+Refactor Plan
+
+    Apply decomposition on DrawPanel to implement better SoC
+    Fix HashMap to bind AbstractVehicle with BufferedImage
+    Check references between CarView, CarController, CarModel.
+    Implement MVC design pattern.
+    Implement Factory design pattern.
+    AbstractVehicleFactory
+
+ */
+
 
 public class DrawPanel extends JPanel{
 

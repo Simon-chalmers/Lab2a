@@ -1,20 +1,20 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ScaniaCarCarrier extends Scania {
+public class ScaniaCarCarrier extends Scania implements ILoadable<AbstractVehicle>{
 
     /**
      * Number of cars the carrier can hold.
      */
     private final static int maxCars = 6;
     /**
-     * List containing the loaded vehicles.
+     * Loadable class containing list of cars.
      */
-    private final ArrayList<AbstractVehicle> carryList;
+    private final Loadable<AbstractVehicle> carrylist;
 
-    public ScaniaCarCarrier(Point position) {
+    public ScaniaCarCarrier(Point position, int maxCars) {
         super(position);
-        carryList = new ArrayList<>();
+        carrylist = new Loadable<>(maxCars);
         nrDoors = 2;
         color = Color.white;
         enginePower = 600;
@@ -32,16 +32,13 @@ public class ScaniaCarCarrier extends Scania {
      * @return
      */
     public boolean addVehicle(AbstractVehicle vehicle) {
-        if (isFlatbedAtMaxTilt() && !this.equals(vehicle) && vehicle.weight <= 3000) {
+        if (isFlatbedAtMaxTilt() && !this.getClass().equals(vehicle.getClass()) && vehicle.weight <= 3000) {
             if (isWithinDistance(vehicle)) {
-                if (carryList.size() < maxCars) {
+                if (carrylist.load(vehicle)) {
                     vehicle.position.x = position.x;
                     vehicle.position.y = position.y;
                     weight += vehicle.weight;
-                    if (carryList.add(vehicle)) {
-                        vehicle.isLoaded = true;
-                        return true;
-                    }
+                    vehicle.isLoaded = true;
                     return true;
                 }
             }
@@ -53,12 +50,9 @@ public class ScaniaCarCarrier extends Scania {
      * @return Unloads a vehicle from the carrier (First in last out) and sets coordinates for unload position.
      */
     public boolean unloadVehicle() {
-        if (carryList.size() > 0 && isFlatbedAtMaxTilt()) {
-            carryList.get(carryList.size() - 1).position.x = position.x + carryList.size();
-            weight -= carryList.get(carryList.size() - 1).weight;
-            carryList.get(carryList.size() - 1).isLoaded = false;
-            carryList.remove(carryList.size() - 1);
-            return true;
+        if (isFlatbedAtMaxTilt()) {
+            weight -= carrylist.getObjectArrayList().get(carrylist.getObjectArrayList().size()).weight;
+            return carrylist.unload( carrylist.getObjectArrayList().get(carrylist.getObjectArrayList().size()));
         }
         return false;
     }
@@ -78,13 +72,23 @@ public class ScaniaCarCarrier extends Scania {
     @Override
     public void move() {
         super.move();
-        for (AbstractVehicle v : carryList) {
+        for (AbstractVehicle v : getCarryList()) {
             v.position.x = position.x;
             v.position.y = position.y;
         }
     }
 
     public ArrayList<AbstractVehicle> getCarryList() {
-        return carryList;
+        return carrylist.getObjectArrayList();
+    }
+
+    @Override
+    public boolean load(AbstractVehicle object) {
+        return false;
+    }
+
+    @Override
+    public boolean unload(AbstractVehicle object) {
+        return false;
     }
 }

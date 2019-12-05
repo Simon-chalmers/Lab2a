@@ -33,8 +33,6 @@ public class CarController {
     // A list of cars, modify if needed
     List<AbstractVehicle> vehicles = new ArrayList<>();
 
-    private static Random rand = new Random();
-
     //methods:
 
     public static void main(String[] args) {

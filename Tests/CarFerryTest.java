@@ -18,7 +18,7 @@ class CarFerryTest {
         secondCarFerry = new CarFerry(150);
         saab95 = new Saab95(new Point(50, 50));
         scania = new Scania(new Point(50, 50));
-        scaniaCarCarrier = new ScaniaCarCarrier(new Point(50, 50));
+        scaniaCarCarrier = new ScaniaCarCarrier(new Point(50, 50), 10);
     }
 
     @Test

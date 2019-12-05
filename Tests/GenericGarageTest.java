@@ -19,7 +19,7 @@ class GenericGarageTest {
         volvo240 = new Volvo240(new Point(50, 50));
         saab95 = new Saab95(new Point(50, 50));
         secondSaab95 = new Saab95(new Point(50, 50));
-        scaniaCarCarrier = new ScaniaCarCarrier(new Point(50, 50));
+        scaniaCarCarrier = new ScaniaCarCarrier(new Point(50, 50), 10);
 
         genericGarage = new GenericGarage(3);
         secondGenericGarage = new GenericGarage(5);
