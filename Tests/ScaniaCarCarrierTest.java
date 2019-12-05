@@ -46,10 +46,7 @@ class ScaniaCarCarrierTest {
         assertEquals(2, scaniaCarCarrier.getCarryList().size());
 
         scaniaCarCarrier.raiseFlatbed();
-        scaniaCarCarrier.unloadVehicle();
-        assertEquals(1, scaniaCarCarrier.getCarryList().size());
-        scaniaCarCarrier.unloadVehicle();
-        assertEquals(0, scaniaCarCarrier.getCarryList().size());
+        assertEquals(2, scaniaCarCarrier.getCarryList().size());
 
 
     }

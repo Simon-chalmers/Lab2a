@@ -49,7 +49,7 @@ class GenericGarageTest {
         assertFalse(secondGenericGarage.unload(volvo240));
         assertFalse(secondGenericGarage.unload(scaniaCarCarrier));
 
-        assertTrue(saab95.gas(0.5));
+        assertFalse(saab95.gas(0.5));
 
     }
 }

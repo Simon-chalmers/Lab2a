@@ -51,6 +51,16 @@ abstract public class AbstractVehicle implements IMovable {
      */
     boolean isStarted;
 
+    private int width;
+
+    public int getWidth(){
+        return width;
+    }
+
+    public void setWidth(int width){
+        this.width = width;
+    }
+
     public int getNrDoors() {
         return nrDoors;
     }

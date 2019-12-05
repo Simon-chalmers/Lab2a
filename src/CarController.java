@@ -1,29 +1,21 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.sql.SQLOutput;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
-* This class represents the Controller part in the MVC pattern.
-* It's responsibilities is to listen to the View and responds in a appropriate manner by
-* modifying the model state and the updating the view.
+ * This class represents the Controller part in the MVC pattern.
+ * It's responsibilities is to listen to the View and responds in a appropriate manner by
+ * modifying the model state and the updating the view.
  */
 
 public class CarController {
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 13;
+    private final int delay = 1;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
@@ -39,9 +31,9 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.vehicles.add(new Volvo240(new Point(10, 260)));
-        cc.vehicles.add(new Saab95(new Point(10, 345)));
-        cc.vehicles.add(new Scania(new Point(10, 420)));
+        cc.vehicles.add(new Volvo240(new Point(100, 160)));
+        cc.vehicles.add(new Saab95(new Point(100, 345)));
+        cc.vehicles.add(new Scania(new Point(100, 480)));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -51,18 +43,19 @@ public class CarController {
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
-    private class TimerListener implements ActionListener{
+     * view to update its images. Change this method to your needs.
+     * */
+    private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            for(AbstractVehicle vehicle : vehicles){
+            for (AbstractVehicle vehicle : vehicles) {
 
-                if(!isVehicleInFrame(vehicle)){
+                /*if (!isVehicleInFrame(vehicle)) {
                     vehicle.turnLeft();
                     vehicle.turnLeft();
 
-                }
+                }*/
+                withinBoundsHandler(vehicle, frame.getWidth() - 115);
                 vehicle.move();
             }
 
@@ -72,12 +65,21 @@ public class CarController {
         }
     }
 
-    boolean isVehicleInFrame(AbstractVehicle vechicle){
-        if(vechicle.position.x > 0 && vechicle.position.x < frame.getWidth() - 100){
-            if(vechicle.position.y > 0 && vechicle.position.y < frame.getHeight() - frame.controlPanel.getHeight() - 100){
+    private void withinBoundsHandler(AbstractVehicle vehicle, int width) {
+        if (vehicle.position.x > width) {
+            vehicle.direction = 2;
+        } else if (vehicle.position.x < 0) {
+            vehicle.direction = 0;
+        }
+    }
+
+    boolean isVehicleInFrame(AbstractVehicle vechicle) {
+        if (vechicle.position.x > 0 && vechicle.position.x < frame.getWidth() - vechicle.getWidth()) {
+            if (vechicle.position.y > 0 && vechicle.position.y < frame.getHeight() - frame.controlPanel.getHeight() - vechicle.getWidth()) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -96,46 +98,46 @@ public class CarController {
         }
     }
 
-    void turboOn(){
-        for(AbstractVehicle car : vehicles){
-            if(car instanceof Saab95){
+    void turboOn() {
+        for (AbstractVehicle car : vehicles) {
+            if (car instanceof Saab95) {
                 ((Saab95) car).setTurboOn();
             }
         }
     }
 
     void turboOff() {
-        for(AbstractVehicle car : vehicles){
-            if(car instanceof Saab95){
+        for (AbstractVehicle car : vehicles) {
+            if (car instanceof Saab95) {
                 ((Saab95) car).setTurboOff();
             }
         }
     }
 
-    void liftBed(){
-        for(AbstractVehicle car : vehicles){
-            if(car instanceof Scania ){
+    void liftBed() {
+        for (AbstractVehicle car : vehicles) {
+            if (car instanceof Scania) {
                 ((Scania) car).raiseFlatbed();
             }
         }
     }
 
-    void lowerBed(){
-        for(AbstractVehicle car : vehicles){
-            if(car instanceof Scania ){
+    void lowerBed() {
+        for (AbstractVehicle car : vehicles) {
+            if (car instanceof Scania) {
                 ((Scania) car).lowerFlatbed();
             }
         }
     }
 
-    void startEngine(){
-        for(AbstractVehicle car : vehicles){
+    void startEngine() {
+        for (AbstractVehicle car : vehicles) {
             car.startEngine();
         }
     }
 
-    void stopEngine(){
-        for(AbstractVehicle car : vehicles){
+    void stopEngine() {
+        for (AbstractVehicle car : vehicles) {
             car.stopEngine();
         }
     }

@@ -67,13 +67,7 @@ public class DrawPanel extends JPanel{
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         // Print an error message in case file is not found with a try/catch block
-        try {
-            BufferedImage bufferedImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/background.png"));
-            backgroundImage = bufferedImage.getScaledInstance(800, 800, Image.SCALE_SMOOTH);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
@@ -91,18 +85,23 @@ public class DrawPanel extends JPanel{
         for(AbstractVehicle vehicle : vehicles){
             try {
                 if (vehicle.getClass().equals(Saab95.class)) {
-                    bufferedImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/redcar.png")).getScaledInstance(100, 60, Image.SCALE_SMOOTH));
+                    bufferedImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")).getScaledInstance(100, 60, Image.SCALE_SMOOTH));
                     vehiclePoints.add(new Point(vehicle.position.x, vehicle.position.y));
+                    vehicle.setWidth(bufferedImages.get(bufferedImages.size()-1).getWidth(null));
                 } else if (vehicle.getClass().equals(Volvo240.class)) {
-                    bufferedImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/bluecar.png")).getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+                    bufferedImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")).getScaledInstance(100, 100, Image.SCALE_SMOOTH));
                     vehiclePoints.add(new Point(vehicle.position.x, vehicle.position.y));
+                    vehicle.setWidth(bufferedImages.get(bufferedImages.size()-1).getWidth(null));
                 } else {
-                    bufferedImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/truck.png")).getScaledInstance(150, 200, Image.SCALE_SMOOTH));
+                    bufferedImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
                     vehiclePoints.add(new Point(vehicle.position.x, vehicle.position.y));
+                    vehicle.setWidth(bufferedImages.get(bufferedImages.size()-1).getWidth(null));
                 }
             }catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+
 }

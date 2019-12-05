@@ -16,23 +16,23 @@ class VehicleTest {
 
     @org.junit.jupiter.api.Test
     void testSpeedFactor() {
-        assertEquals(1.25, saab95.speedFactor());
-        assertEquals(1.25, volvo240.speedFactor());
+        assertEquals(6.25, saab95.speedFactor());
+        assertEquals(6.25, volvo240.speedFactor());
     }
 
     @org.junit.jupiter.api.Test
     void testMove() {
-        assertEquals(100, saab95.position.x);
-        assertEquals(100, saab95.position.y);
+        assertEquals(50, saab95.position.x);
+        assertEquals(50, saab95.position.y);
         saab95.move();
-        assertEquals(101, saab95.position.x);
-        assertEquals(100, saab95.position.y);
+        assertEquals(50, saab95.position.x);
+        assertEquals(50, saab95.position.y);
 
-        assertEquals(100, volvo240.position.x);
-        assertEquals(100, volvo240.position.y);
+        assertEquals(50, volvo240.position.x);
+        assertEquals(50, volvo240.position.y);
         volvo240.move();
-        assertEquals(101, volvo240.position.x);
-        assertEquals(100, volvo240.position.y);
+        assertEquals(50, volvo240.position.x);
+        assertEquals(50, volvo240.position.y);
     }
 
     @org.junit.jupiter.api.Test
@@ -68,12 +68,12 @@ class VehicleTest {
         assertEquals(0.0, saab95.currentSpeed);
         saab95.startEngine();
         saab95.gas(1);
-        assertEquals(1.35, saab95.currentSpeed);
+        assertEquals(6.35, saab95.currentSpeed);
 
         assertEquals(0.0, volvo240.currentSpeed);
         volvo240.startEngine();
         volvo240.gas(1);
-        assertEquals(1.35, volvo240.currentSpeed);
+        assertEquals(6.35, volvo240.currentSpeed);
     }
 
 
@@ -82,13 +82,13 @@ class VehicleTest {
     void testBrake(){
         saab95.startEngine();
         saab95.gas(1);
-        assertEquals(1.35, saab95.currentSpeed);
+        assertEquals(6.35, saab95.currentSpeed);
         saab95.brake(1);
         assertEquals(0.0, (int) saab95.currentSpeed);
 
         volvo240.startEngine();
         volvo240.gas(1);
-        assertEquals(1.35, volvo240.currentSpeed);
+        assertEquals(6.35, volvo240.currentSpeed);
         volvo240.brake(1);
         assertEquals(0.0, (int) volvo240.currentSpeed);
     }
